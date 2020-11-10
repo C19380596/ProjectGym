@@ -16,7 +16,7 @@ class Prompt
             y = weight;
         }
 
-        void body()//Change this into a class when you figure out how, James.
+        void body()
         {
             int bmi = y/(x*x);
             cout << "Your Body mass index value is " << bmi << endl;
