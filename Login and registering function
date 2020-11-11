@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+class manager{
+    public:
+    // login function that reads from the files in working directory if you have registered
+    void login(){
+        for(int i = 0; i<3; i++){
+        cout << "Please input your" << endl;
+        cout << "Username: "; cin >> username;
+        cout << "Password: "; cin >> password;
+            ifstream read(username + ".txt");
+                getline(read, loginUser);
+                getline(read, loginPass);
+            if(loginUser == username && loginPass == password){
+                cout << "welcome" << endl;
+                i = 3;
+            }else{
+                cout << "incorrect username or password" << endl;
+            };
+        } if(loginUser != username)
+        cout << "Too many attempts" << endl;
+}
+    //register your name and passwor dwhich is saved in a file in the working directory
+    void registering(){
+    cout << "To register please input" << endl;
+        cout << "Username: "; cin >> username;
+        cout << "Password: "; cin >> password;
+
+        ofstream file;
+        file.open(username + ".txt");
+        file << username << endl << password;
+        file.close();
+    }
+    private:
+        string username;
+        string password;
+        string loginUser, loginPass;
+};
+//testing login and resgistering functions
+int main(){
+    string username, password;
+    string input;
+    do{
+    cout << "login or register:" << endl;
+    cin >> input;
+    if(input == "login"){
+     manager login1;
+     login1.login();
+    }else if(input == "register"){
+        manager register1;
+        register1.registering();
+    }else{
+        if(input != "end"){
+    cout << "unknown input" << endl;
+        }
+    }
+}while(input != "end"); // loops until you end, even if username and password is corerct
+    return 0;
+}
