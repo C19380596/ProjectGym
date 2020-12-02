@@ -15,9 +15,12 @@ int main()
 {
     int end = 1;
     string prompt;
-
     string username, password;
-    string input;
+
+    //string input;
+
+    //None of the commented out code is necessary because we have a bypass below
+
     /*cout << "login, skip login or register:" << endl;
     do{
         cout << ">>";
@@ -42,41 +45,41 @@ int main()
         }
     }while (counter != 0);
     //in the future we will implement login support but for now the login is only cosmetic.
-    //this *needs to be changed, James*
 
 */
 
     cout << "Welcome to Gym Manager (Name & Patent Pending)!\n\nPlease enter a command to continue with your gym activity management.\n";
 
-    //main loop
+    //main loop, designed to function as a command prompt.
     do{
         cout << ">>";
         cin >> prompt;
 
         //obligatory help command.
-        if(prompt == "help")
+        if(prompt == "help"||prompt == "Help")
         {cout << "\nCommands:\n\nhelp: Gives you the other commands.\n";
         cout << "workout: A calculator for the calories you should burn based on your workout routine. (This is still WIP)\n";
         cout << "bmi: A Body Mass Index tool to determine your fitness.\nend: Turn the thing off.\n";
         cout << "login: Starts the login process.\n";
-        cout << "register: Starts the register process to allow you to log in.\n";}
+        cout << "register: Starts the register process to allow you to log in.\n";
+        cout << "stats: Displays all of the relevant stats associated with your profile. (WIP)\n";}
 
-        //login while you are logged out.
-        else if(prompt == "login")
+        //login with a registered account.
+        else if(prompt == "login"||prompt == "Login")
         {
-            manager login1;
+            Manager login1;
             login1.login();
         }
 
-        //register a new account while logged in or out.
-        else if(prompt == "register")
+        //register a new account.
+        else if(prompt == "register"||prompt == "Register")
         {
-            manager register1;
+            Manager register1;
             register1.registering();
         }
 
         //The BMI Calculator. This is where you will use your inputted weight and height to determine your health.
-        else if(prompt == "bmi")
+        else if(prompt == "bmi"||prompt == "BMI"||prompt == "Bmi")
                {
                     float height = 0;
                     float weight = 0;
@@ -95,17 +98,17 @@ int main()
                     else if(bmi<19){cout << "You are underweight. Putting on some weight will improve your health.\n\n";}}
 
 
-                    //export this info into a new file so that we can save data in the future
+                    //export this info into a new file so that we can save data in the future.
                }
 
         //This is the 'Calorie Burning (Workout) Calculator(tm)'. This will work out the estimated calories burnt in a session of exercise. It will require your weight to function.
-        else if(prompt == "workout")
+        else if(prompt == "workout"||prompt == "Workout")
         {
-            cout << "Assume you have burned some calories.\nGo away.\n";
+            cout << "Assume you have burned some calories.\nGo away.\n";//Placeholder for Patrick's code.
         }
 
         //This will show you your entered information on request. eventually.
-        else if(prompt == "stats")
+        else if(prompt == "stats"||prompt == "Stats")
         {
             if(notloggedin == 1)// do not forget you need a double equals, James
             {
@@ -113,20 +116,19 @@ int main()
             }
             else
             {
-                cout << "This feature will come with the new 'Login' update.\nHold tight!\n";
+                cout << "This feature will come with the new 'Functional Login' update.\nHold tight!\n";
             }
         }
 
-        //here are the extra bits and features*(tm). They are not as important, but more fun.
-        else if(prompt=="secrets")
-            {cout << "\nYou found the secrets! Here is a list of extra things you can do:\n1: Try putting text into the BMI calculator! (You will need to restart the program afterwards.)\n";}
-            //2. Type 'arcade' for a less realistic but more fun version of the workout command! (or a videogame! undecided!)
+        //here is the extra feature*(tm). It is not as important, but more fun.
+        else if(prompt=="secret")
+            {cout << "\nYou found the secret! Here is your reward:\nTry putting text into the BMI calculator! (You will need to restart the program afterwards.)\n";}
 
         //program is kil.
-        else if(prompt == "end")
+        else if(prompt == "end"||prompt == "End")
             end = 0;
 
         //error message for when you do something unsupported.
         else
-            {cout << "\nCommand not recognised. Type 'help' for a list of commands.\n(and no caps please)\n";}
+            {cout << "\nCommand not recognised. Type 'help' for a list of commands.\n";}
     }while(end>0);}
