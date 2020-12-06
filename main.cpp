@@ -1,50 +1,23 @@
-#include <iostream>
 #include "profile.h"
-#include "Exercise.h"
+
 
 using namespace std;
-
-float weight;
 
 int main()
 {
     //First menu to login and register.
-    int prompt, input, integer;
+    int prompt, integer;
     string username, password;
     profile profile1;
     start:
     cout << "Welcome to Gym Manager \nPlease enter a command to continue with your gym activity management.\n" << endl;
-    start1:
-    do{
-    cout << "\n1. Login" << endl;
-    cout << "2. Register" << endl;
-    cout << ">> ";
-    cin >> input;
-    if(input == 1){
-        profile1.login();
-        //cout << profile1.GetloggedIn() << endl; // testing boolean
-    }else if(input == 2){
-        profile1.registering();
-        break;
-    }else{
-        cout << "Invalid input. Please type '1' to Login, '2' to Register." << endl;
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        goto start1;
-    }
-    }while(profile1.GetloggedIn() == 1);
 
-    cout << "1. BMI Calculator - Calculates your body/mass index." << endl;
-    cout << "2. Workout Routine Tracker - Tracks your workout routine and the calories burnt in the process." << endl;
-    cout << "3. Profile Statistics - Overview of profile details." << endl;
-    cout << "4. Relog - Go back to login and registration." << endl;
-    cout << "5. Help - Reproduces this message." << endl;
-    cout << "0. END" << endl;
+    profile1.registration();
+
     do{
     start3:
     cout << ">> ";
     cin >> prompt;
-
     if(prompt >> integer){
 
     }else{
@@ -53,9 +26,8 @@ int main()
         cout << "\nInvalid command. Type '5' to open up the Help menu for a list of commands.\n " << endl;
         goto start3;
     }
-
     switch (prompt){
-    case 0: {
+    case 6: {
             cout << "Thank you for using Gym Manager." << endl;
 }
         break;
@@ -64,8 +36,7 @@ int main()
 }
         break;
     case 2: {
-        Exercise exercise1;
-        exercise1.workout();
+        profile1.workout();
 }
         break;
     case 3:{
@@ -79,19 +50,18 @@ int main()
 }
             break;
     case 5:{
-            cout << "1. BMI Calculator - Calculates your body/mass index." << endl;
-            cout << "2. Workout Routine Tracker - Tracks your workout routine and the calories burnt in the process." << endl;
+            cout << "1. BMI calculater - Calculates your body/mass index." << endl;
+            cout << "2. Workout routine tracker - Tracks your workout and the calaories burnt." << endl;
             cout << "3. Profile Statistics - Overview of profile details." << endl;
-            cout << "4. Relog - Go back to login and registration." << endl;
-            cout << "5. Help - Reproduces this message." << endl;
-            cout << "0. END" << endl;
+            cout << "4. Main menu - Go back to login and registration." << endl;
+            cout << "5. Help menu - List of commands." << endl;
+            cout << "6. END" << endl;
 }
             break;
-    default:{
-            cout << "Invalid command. Type '5' to open up the Help menu for a list of commands. " << endl;
+    default:
+        cout << "Invalid command. Type '5' to open up the Help menu for a list of commands. " << endl;
 }
-}
-    }while(prompt != 0);
+    }while(prompt != 6);
     profile1.save();
 
     return 0;
