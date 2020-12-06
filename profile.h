@@ -36,6 +36,7 @@ class profile
         void save();
         void logonT();
         void reset();
+        void registration();
     protected:
 
     private:
@@ -50,4 +51,3 @@ class profile
 };
 
 #endif // PROFILE_H
-
