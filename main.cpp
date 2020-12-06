@@ -1,13 +1,11 @@
 #include "profile.h"
 
-
 using namespace std;
 
 int main()
 {
     //First menu to login and register.
     int prompt, integer;
-    string username, password;
     profile profile1;
     start:
     cout << "Welcome to Gym Manager \nPlease enter a command to continue with your gym activity management.\n" << endl;
@@ -28,7 +26,7 @@ int main()
     }
     switch (prompt){
     case 6: {
-            cout << "Thank you for using Gym Manager." << endl;
+            cout << "\nThank you for using Gym Manager." << endl;
 }
         break;
     case 1:{
@@ -37,6 +35,7 @@ int main()
         break;
     case 2: {
         profile1.workout();
+        profile1.save();
 }
         break;
     case 3:{
@@ -66,4 +65,5 @@ int main()
 
     return 0;
 }
+
 
