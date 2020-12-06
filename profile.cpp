@@ -3,7 +3,6 @@
 using namespace std;
 
 string loginUser, loginPass;
-
 profile profile1;
 
 profile::profile()
@@ -18,7 +17,35 @@ profile::profile()
     totalV = 0;
     loggedIn = 0;
 }
-//Login function that authenticates the suer and also loads user data into the class.
+//Registration
+void profile::registration(){
+    int input;
+    start1:
+    do{
+    cout << "\n1. Login" << endl;
+    cout << "2. Register" << endl;
+    cout << ">> ";
+    cin >> input;
+        if(input == 1){
+        profile1.login();
+            }else if(input == 2){
+                profile1.registering();
+                break;
+            }else{
+        cout << "Invalid input. Please type '1' to Login, '2' to Register." << endl;
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        goto start1;
+    }
+    }while(profile1.GetloggedIn() == 0);
+
+    cout << "1. BMI calculater - Calculates your bmi." << endl;
+    cout << "2. Workout routine tracker - Tracks your workout." << endl;
+    cout << "3. Profile Statistics - Overview of profile details." << endl;
+    cout << "4. Main menu - Go back to login and registration." << endl;
+    cout << "0. END" << endl;
+}
+//Login function that authenticates the user and also loads user data into the class.
 void profile::login(){
     for(int i = 0; i<3; i++){
         cout << "\nTo login please input" << endl;
@@ -37,14 +64,14 @@ void profile::login(){
                     file.close();
             if(loginUser == profile1.Getusername() && loginPass == profile1.Getpassword()){
                 cout << "\nWelcome back " << username <<"!" << endl;
-                profile1.SetloggedIn(1);
                 i = 3;
+                profile1.SetloggedIn(1);
                 profile1.logonT();
             }else{
                 cout << "Incorrect username or password." << endl;
                 profile1.SetloggedIn(0);
             };
-        } if(loginUser != username)
+        } if(profile1.GetloggedIn() == 0)
         cout << "\nToo many attempts. Please try again." << endl;
 }
 //Registers the user and allows access to program and setting username and password into class.
@@ -97,7 +124,7 @@ void profile::save(){
 void profile::logonT(){
     profile1.GettotalV();
     totalV++;
-    profile1.SettotalV(totalV); //////////////////////needs to be fixed
+    profile1.SettotalV(totalV);
 }
 void profile::reset(){
     profile1.Setusername(" ");
