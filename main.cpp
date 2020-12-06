@@ -5,41 +5,26 @@ using namespace std;
 int main()
 {
     //First menu to login and register.
-    int prompt, input;
+    int prompt, integer;
     string username, password;
     profile profile1;
     start:
     cout << "Welcome to Gym Manager \nPlease enter a command to continue with your gym activity management.\n" << endl;
-    start1:
-    do{
-    cout << "\n1. Login" << endl;
-    cout << "2. Register" << endl;
-    cout << ">> ";
-    cin >> input;
-    if(input == 1){
-        profile1.login();
-        cout << profile1.GetloggedIn() << endl; // testing boolean
-    }else if(input == 2){
-        profile1.registering();
-        break;
-    }else{
-        cout << "Invalid input. Please type '1' to Login, '2' to Register." << endl;
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        goto start1;
-    }
-    }while(profile1.GetloggedIn() == 1);
 
-    cout << "1. BMI calculater - Calculates your bmi." << endl;
-    cout << "2. Workout routine tracker - Tracks your workout." << endl;
-    cout << "3. Profile Statistics - Overview of profile details." << endl;
-    cout << "4. Main menu - Go back to login and registration." << endl;
-    cout << "0. END" << endl;
+    profile1.registration();
 
     do{
+    start3:
     cout << ">> ";
     cin >> prompt;
+    if(prompt >> integer){
 
+    }else{
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "\nInvalid command. Type '5' to open up the Help menu for a list of commands.\n " << endl;
+        goto start3;
+    }
     switch (prompt){
     case 0: {
             cout << "Thank you for using Gym Manager." << endl;
