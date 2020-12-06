@@ -37,6 +37,7 @@ class profile
         void logonT();
         void reset();
         void registration();
+        void workout();
     protected:
 
     private:
