@@ -16,11 +16,12 @@ profile::profile()
     bmi = 0;
     totalCals = 0;
     totalV = 0;
+    loggedIn = 0;
 }
 //Login function that authenticates the suer and also loads user data into the class.
 void profile::login(){
     for(int i = 0; i<3; i++){
-        cout << "To login please input" << endl;
+        cout << "\nTo login please input" << endl;
         cout << "Username: "; cin >> loginUser;
         cout << "Password: "; cin >> loginPass;
             ifstream file;
@@ -35,27 +36,28 @@ void profile::login(){
                     profile1.SettotalV(totalV);
                     file.close();
             if(loginUser == profile1.Getusername() && loginPass == profile1.Getpassword()){
-                cout << "Welcome back " << username <<"!" << endl;
+                cout << "\nWelcome back " << username <<"!" << endl;
+                profile1.SetloggedIn(1);
                 i = 3;
+                profile1.logonT();
             }else{
-                cout << "incorrect username or password" << endl;
+                cout << "Incorrect username or password." << endl;
+                profile1.SetloggedIn(0);
             };
         } if(loginUser != username)
-        cout << "Too many attempts" << endl;
+        cout << "\nToo many attempts. Please try again." << endl;
 }
 //Registers the user and allows access to program and setting username and password into class.
 void profile::registering(){
-    cout << "To register please input" << endl;
+    cout << "\nTo register please input" << endl;
     cout << "Username: "; cin >> username;
     cout << "Password: "; cin >> password;
     profile1.Setusername(username);
     profile1.Setpassword(password);
-    cout << "Welcome to Gym Manager " << username << "! To get started just type in a command." << endl;
+    cout << "\nWelcome to Gym Manager " << username << "! To get started just type in a command." << endl;
 }
 //Calculates BMI and stores data in class.
 void profile::bmiC(){
-        float height = 0;
-        float weight = 0;
         cout << "\nWelcome to the BMI Calculator.\n\nUse this tool to determine your fitness and personal health based on your height and weight.\n";
         cout << "Please enter your Height in meters: ";
         cin >> height;
@@ -76,7 +78,7 @@ void profile::bmiC(){
 }
 //Function to cout profiles data.
 void profile::stats(){
-    cout << "Username: " << profile1.Getusername() << endl;
+    cout << "\nUsername: " << profile1.Getusername() << endl;
     cout << "Password: " << profile1.Getpassword() << endl;
     cout << "Weight: " << profile1.Getweight() << endl;
     cout << "Height: " << profile1.Getheight() << endl;
@@ -88,15 +90,23 @@ void profile::stats(){
 void profile::save(){
     ofstream file;
     file.open(profile1.Getusername() + ".txt");
-    file << profile1.Getusername() << endl << profile1.Getpassword() << endl << profile1.Getweight() << endl << profile1.Getheight() << endl << profile1.Getbmi() << profile1.GettotalCals() << endl << profile1.GettotalV() << endl;
+    file << profile1.Getusername() << endl << profile1.Getpassword() << endl << profile1.Getweight() << endl << profile1.Getheight() << endl << profile1.Getbmi() << endl << profile1.GettotalCals() << endl << profile1.GettotalV() << endl;
     file.close();
 }
 //Tracks user logins.
 void profile::logonT(){
-    int logonT;
-    logonT = profile1.GettotalV();
-    logonT += 1;
-    profile1.SettotalV(logonT);
+    profile1.GettotalV();
+    totalV++;
+    profile1.SettotalV(totalV); //////////////////////needs to be fixed
+}
+void profile::reset(){
+    profile1.Setusername(" ");
+    profile1.Setpassword(" ");
+    profile1.Setweight(0);
+    profile1.Setheight(0);
+    profile1.Setbmi(0);
+    profile1.SettotalCals(0);
+    profile1.SettotalV(0);
 }
 profile::~profile()
 {
