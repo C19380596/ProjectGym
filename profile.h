@@ -1,9 +1,9 @@
-
 #ifndef PROFILE_H
 #define PROFILE_H
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <limits>
 
 using namespace std;
 
@@ -17,22 +17,25 @@ class profile
         void Setusername(string val) { username = val; }
         string Getpassword() { return password; }
         void Setpassword(string val) { password = val; }
-        int Getweight() { return weight; }
+        float Getweight() { return weight; }
         void Setweight(float val) { weight = val; }
-        int Getheight() { return height; }
+        float Getheight() { return height; }
         void Setheight(float val) { height = val; }
         int GettotalCals() { return totalCals; }
         void SettotalCals(float val) { totalCals = val; }
         int GettotalV() { return totalV; }
         void SettotalV(int val) { totalV = val; }
         int Getbmi() { return bmi; }
-        void Setbmi(float val) { bmi = val; }
+        void Setbmi(int val) { bmi = val; }
+        bool GetloggedIn() { return loggedIn; }
+        void SetloggedIn(bool val) { loggedIn = val; }
         void login();
         void registering();
         void bmiC();
         void stats();
         void save();
         void logonT();
+        void reset();
     protected:
 
     private:
@@ -42,7 +45,9 @@ class profile
         float height;
         float totalCals;
         int totalV;
-        float bmi;
+        int bmi;
+        bool loggedIn;
 };
 
 #endif // PROFILE_H
+
