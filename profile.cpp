@@ -74,6 +74,7 @@ void profile::login(){
             };
         } if(profile1.GetloggedIn() == 0)
         cout << "\nToo many attempts. Please try again." << endl;
+
 }
 //Registers the user and allows access to program and setting username and password into class.
 void profile::registering(){
@@ -149,26 +150,26 @@ void profile::workout()
     float l = 0;
     while(y == 1) {
 
-        if (profile1.Getweight() >= 56 && profile1.Getweight() <= 111)
-         cout << "\nWhat exercise did you do?\n" << " \n A: Weight Lifting: general \n B: Aerobics: water \n C: Stretching, Hatha Yoga \n D: Calisthenics: moderate \n E: Riders: general \n F: Aerobics: low impact \n G: Stair Step Machine: general \n H: Weight Lifting: vigorous \n I: Bicycling, Stationary: moderate \n J: Rowing, Stationary: moderate\n K: Aerobics: high impact\n L: Rowing, Stationary: vigorous\n M: Ski Machine: general\n " << endl;
+        if (profile1.Getweight() >= 56 && profile1.Getweight() <= 111){
+            cout << "\nWhat exercise did you do?\n" << " \n A: Weight Lifting: general \n B: Aerobics: water \n C: Stretching, Hatha Yoga \n D: Calisthenics: moderate \n E: Riders: general \n F: Aerobics: low impact \n G: Stair Step Machine: general \n H: Weight Lifting: vigorous \n I: Bicycling, Stationary: moderate \n J: Rowing, Stationary: moderate\n K: Aerobics: high impact\n L: Rowing, Stationary: vigorous\n M: Ski Machine: general\n " << endl;
+            cin >> exercise;}
         else if (profile1.Getweight() < 56 && profile1.Getweight() > 0){
-            cout << "Your weight appears to be lower than the minimum requirements (56KG). \nPlease consult a specialist before performing any strenuous exercises.\nClosing program.";
-            exit(0);}
+            cout << "Your weight appears to be lower than the minimum requirements (56KG). \nPlease consult a specialist before performing any strenuous exercises.\nReturning to main menu.\n";
+            break;}
         else if (profile1.Getweight() < 0){
             cout << "Your weight cannot less than 0. \n";
             goto starh;}
-            else if (profile1.Getweight() > 111){
-            cout << "Your weight appears to be higher than the maximum requirements (111KG). \nPlease consult a specialist before performing any strenuous exercises.\nClosing program." ;
-            exit(0);}
+        else if (profile1.Getweight() > 111){
+            cout << "Your weight appears to be higher than the maximum requirements (111KG). \nPlease consult a specialist before performing any strenuous exercises.\nReturning to main menu.\n" ;
+            break;}
         else
 {
-
             cout << "Error.\nInvalid Input.\n";
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             goto starh;
-}           stark:
-            cin >> exercise;
+}
+stark:
 
 float exer;
 if (exercise == "a" || exercise == "A")
@@ -259,7 +260,10 @@ float weet;
     }
 }
 }
+
 profile::~profile()
 {
     //dtor
 }
+
+   
